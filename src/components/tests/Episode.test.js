@@ -4,28 +4,49 @@ import Episode from './../Episode';
 
 const testEpisode = {
     id:1,
-    name: "",
+    name: "The Vanishing of Will Byers",
     image: "http://static.tvmaze.com/uploads/images/medium_landscape/67/168918.jpg",
     season: 1,
     number: 1,
-    summary: "",
+    summary: "A young boy disappears",
     runtime: 1
 }
 
 const testEpisodeWithoutImage = {
-    //Add in approprate test data structure here.
+    id:1,
+    name: "The Weirdo on Maple Street",
+    image: null,
+    season: 1,
+    number: 1,
+    summary: "Continuation to Will Byres dissapearance",
+    runtime: 1
 }
 
 test("renders without error", () => {
+    
+    render(<Episode episode={testEpisode}/>)
 
 });
 
 test("renders the summury test passed as prop", ()=>{
     
+    render(<Episode episode={testEpisode}/>);
+    
+    const summury = screen.getByText(/A young boy disappears/i);
+    
+    expect(summury).toBeInTheDocument();
+    expect(summury).toBeTruthy();
+
 });
 
 test("renders default image when image is not defined", ()=>{
     
+    render(<Episode episode={testEpisodeWithoutImage}/>);
+
+    const img = screen.getByAltText('./stranger_things.png');
+
+    expect(img).toBeInTheDocument();
+
 })
 
 //Tasks
